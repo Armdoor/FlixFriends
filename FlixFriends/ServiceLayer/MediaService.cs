@@ -9,7 +9,7 @@ namespace FlixFriends.ServiceLayer;
 
 public class MediaService: IMediaService
 {
-    private const string _apiKey = "8440313c";
+    private const string _apiKey = "";
     private readonly HttpClient _httpClient;
     private readonly ApplicationDbContext _dbContext;
     public MediaService(HttpClient httpClient, ApplicationDbContext dbContext)
