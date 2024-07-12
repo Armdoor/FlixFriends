@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "QkdrBzri5wGlkK5oT9DoUBUe22EXI3EEc22A97polyo=",
+  "Source": "FlixFriends",
+  "BasePath": "_content/FlixFriends",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "FlixFriends/wwwroot",
+      "Source": "FlixFriends",
+      "ContentRoot": "/Users/akshitsanoria/RiderProjects/FlixFriends/FlixFriends/wwwroot/",
+      "BasePath": "_content/FlixFriends",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}
