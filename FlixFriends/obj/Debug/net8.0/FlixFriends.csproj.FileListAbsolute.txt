@@ -264,3 +264,9 @@
 /Users/akshitsanoria/RiderProjects/FlixFriends/FlixFriends/bin/Debug/net8.0/client/public/manifest.json
 /Users/akshitsanoria/RiderProjects/FlixFriends/FlixFriends/bin/Debug/net8.0/FlixFriends.staticwebassets.runtime.json
 /Users/akshitsanoria/RiderProjects/FlixFriends/FlixFriends/bin/Debug/net8.0/Microsoft.AspNetCore.SpaServices.Extensions.dll
+/Users/akshitsanoria/RiderProjects/FlixFriends/FlixFriends/bin/Debug/net8.0/RestSharp.dll
+/Users/akshitsanoria/RiderProjects/FlixFriends/FlixFriends/obj/Debug/net8.0/FlixFriends.sourcelink.json
+/Users/akshitsanoria/RiderProjects/FlixFriends/FlixFriends/bin/Debug/net8.0/Microsoft.AspNetCore.JsonPatch.dll
+/Users/akshitsanoria/RiderProjects/FlixFriends/FlixFriends/bin/Debug/net8.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/Users/akshitsanoria/RiderProjects/FlixFriends/FlixFriends/bin/Debug/net8.0/Newtonsoft.Json.Bson.dll
+/Users/akshitsanoria/RiderProjects/FlixFriends/FlixFriends/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
