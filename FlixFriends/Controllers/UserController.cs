@@ -26,33 +26,30 @@ public class UserController : ControllerBase
    {
       if (!ModelState.IsValid)
          return BadRequest(ModelState);
+      // Ensure username is provided
+      if (string.IsNullOrWhiteSpace(loginDto.Username))
+         return BadRequest("Username must be provided.");
 
-      // Ensure at least one of the username or email is provided
-      if (string.IsNullOrWhiteSpace(loginDto.Email) && string.IsNullOrWhiteSpace(loginDto.Username))
-         return BadRequest("Either email or username must be provided.");
-
-      // Find user by email or username
       var user = await _userManager.Users
-         .FirstOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower() || x.Email.ToLower() == loginDto.Email.ToLower());
+         .FirstOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
 
       if (user == null)
-         return Unauthorized("Invalid username or email!");
+         return Unauthorized("Invalid username!");
 
-      // Check the password
       var result = await _signinManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
       if (!result.Succeeded)
          return Unauthorized("Password incorrect");
 
-      // Generate the token and return user information
-      return Ok(
-         new NewUserDto
-         {
-            UserName = user.UserName,
-            Email = user.Email,
-            Token = _tokenService.CreateToken(user)
-         }
-      );
+
+      return Ok(new NewUserDto
+      {
+         FirstName = user.FirstName,
+         LastName = user.LastName,
+         Email = user.Email,
+         UserName = user.UserName,
+         Token = _tokenService.CreateToken(user)
+      });
    }
    
    [HttpPost("register")]
@@ -103,5 +100,35 @@ public class UserController : ControllerBase
       {
          return StatusCode(500, e);
       }
+   }
+   
+   [HttpPost("logout")]
+   public async Task<IActionResult> Logout()
+   {
+      await _signinManager.SignOutAsync();
+      return Ok("Logged out");
+   }
+   
+   [HttpPost("upload-profile-picture")]
+   public async Task<IActionResult> UploadProfilePicture(IFormFile file)
+   {
+      if (file == null || file.Length == 0)
+         return BadRequest("No file uploaded.");
+
+      var user = await _userManager.GetUserAsync(User);
+      if (user == null)
+         return Unauthorized();
+
+      using (var memoryStream = new MemoryStream())
+      {
+         await file.CopyToAsync(memoryStream);
+         user.Image = memoryStream.ToArray();
+      }
+
+      var result = await _userManager.UpdateAsync(user);
+      if (!result.Succeeded)
+         return StatusCode(500, "Error updating user profile picture.");
+
+      return Ok("Profile picture uploaded successfully.");
    }
 }

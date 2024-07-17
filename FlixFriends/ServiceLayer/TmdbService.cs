@@ -82,7 +82,7 @@ namespace FlixFriends.ServiceLayer
         
         public async Task<JObject?> GetTvDetails(int tvId)
         {
-            var url = new Uri($"tv/{tvId}?api_key={_apiKey}", UriKind.Relative);
+            var url = new Uri($"tv/{tvId}?api_key={_apiKey}&append_to_response=credits", UriKind.Relative);
             var response = await _httpClient.GetStringAsync(url);
             var json = JObject.Parse(response);
             return json;
